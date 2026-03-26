@@ -1,0 +1,2 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1774509197285,1564,POST - Get Auth Token,200,OK,End-to-End Booking Flow 1-1,text,true,,766,270,1,1,https://restful-booker.herokuapp.com/auth,1559,0,1270

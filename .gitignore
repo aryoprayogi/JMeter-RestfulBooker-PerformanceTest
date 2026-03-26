@@ -1,0 +1,8 @@
+# Abaikan file hasil report lokal JMeter
+result.csv
+HTML_Report/
+jmeter.log
+*.log
+
+# Abaikan file backup bawaan JMeter (kalau ada)
+*.bak
