@@ -33,4 +33,4 @@ jobs:
         if: always() # Jaga-jaga biar report tetep ke-upload walau ada API yang lelet (merah)
         with:
           name: JMeter-HTML-Report
-          path: HTML_Report/
+          path: HTML_Report
