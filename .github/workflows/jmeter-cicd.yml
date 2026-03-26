@@ -1,0 +1,36 @@
+name: Restful-Booker Performance Test (JMeter)
+
+on:
+  workflow_dispatch: # Tombol sakti buat jalanin test manual kapan aja
+  repository_dispatch:
+    types: [run-jmeter-test] # Sinyal Satpam kalau ada update dari Developer
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest # Kita pakai server Linux gratisan dari GitHub
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup Java 21 LTS
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: 🛠️ Install Apache JMeter 5.6.3
+        run: |
+          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+          tar -xzf apache-jmeter-5.6.3.tgz
+          
+      - name: 🚀 Execute JMeter Load Test (CLI Mode)
+        run: |
+          ./apache-jmeter-5.6.3/bin/jmeter -n -t "Restful-Booker Load Test.jmx" -l result.csv -e -o HTML_Report
+
+      - name: 📊 Upload HTML Dashboard Report
+        uses: actions/upload-artifact@v4
+        if: always() # Jaga-jaga biar report tetep ke-upload walau ada API yang lelet (merah)
+        with:
+          name: JMeter-HTML-Report
+          path: HTML_Report
